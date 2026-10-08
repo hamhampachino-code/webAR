@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>WebAR - Direct GIF</title>
+  
+  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/3.3.2/aframe/build/aframe-ar.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/mayognaise/aframe-gif-shader@master/dist/aframe-gif-shader.min.js"></script>
+</head>
+
+<body style="margin: 0px; overflow: hidden;">
+
+  <a-scene
+    vr-mode-ui="enabled: false;"
+    renderer="logarithmicDepthBuffer: true;"
+    embedded
+    arjs="sourceType: webcam; debugUIEnabled: false;">
+
+    <a-assets>
+      <img id="utubo-gif" src="utsubo-no-bg.gif" />
+    </a-assets>
+
+    <!-- カメラの固定位置（Z軸で画面の手前に配置） -->
+    <a-camera position="0 0 0" look-controls="enabled: false">
+      <!-- カメラの直下に配置することで画面中央に追従・固定表示されます -->
+      <a-plane
+        material="shader: gif; src: #utubo-gif; transparent: true; alphaTest: 0.5; side: double;"
+        position="0 0 -2"
+        rotation="0 0 0"
+        scale="1.5 1.5 1">
+      </a-plane>
+    </a-camera>
+
+  </a-scene>
+
+</body>
+
+</html>
